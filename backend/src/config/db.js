@@ -7,13 +7,15 @@ const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     password: 'simo365',
-    database: 'testdb',
+    database: 'todo_list',
     waitForConnections: true,
-    connectionLimit: 10
+    connectionLimit: 10,
+    enableKeepAlive: true,
+    keepAliveInitialDelayMs: 0
 });
 
-async function connectToDatabase() {
-    return pool;
-}
+pool.on('error', (err) => {
+    console.error('Pool error:', err);
+});
 
-module.exports = connectToDatabase();
+module.exports = pool;

@@ -4,7 +4,7 @@ function App() {
   const [backend , setabackend] = useState([{}]) ;
       useEffect
       (() =>{
-        fetch("/api")
+        fetch("/api/tasks")
         .then((res) => res.json())
         .then((data) => {
           setabackend(data)
@@ -14,8 +14,12 @@ function App() {
 
   return (
     <div>
-      { backend.users ? backend.users.map((user , index) => (
-        <h1 key={index}>{user}</h1>
+      { backend.length !== 0 ? backend.map((task , index) => (
+        <div key={index} >
+          <p>{task.title}</p>
+          <p>{task.description}</p>
+          <p>{task.is_completed ? "completed" : "uncompleted"}</p>
+        </div>
       )) : <h1>Loading...</h1> }
     </div>
   )

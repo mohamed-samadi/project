@@ -13,4 +13,4 @@ use todo_list;
 -- value(
 -- 'sport' , 'go to the gym today' , FALSE) ;
 
-select * from task ;
+select * from tasks ;
