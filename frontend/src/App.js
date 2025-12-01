@@ -64,14 +64,17 @@ function App() {
       const  validFormData = {
         title: formData.title.length >= 3 && formData.title.length < 255,
         description: formData.description.length > 5
-      }
+      };
       const validFields = Object.values(validFormData).some(value => value === false) ;
       
+
       async function addNewTask(){
         try{
           const response = await axios.post('/api/tasks', formData );
+
           setabackend([...backend, {id: response.data.insertId, 
             ...formData, is_completed: 0, created_at: new Date().toISOString().slice(0, 19).replace('T', ' ')}]);
+          
           setformData({ title: "", description: "" }) ;
           
         }catch(error){
